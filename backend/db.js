@@ -1,0 +1,28 @@
+const mongoose =require('mongoose');
+const mongoURI="mongodb://localhost:27017/"
+
+
+const connectToMongo=async()=>{
+    try{
+         mongoose.connect(mongoURI)
+         console.log("connected to mongo successfully")
+    }
+    catch(error) {
+        console.log(error)
+        process.exit()
+    }
+}
+
+const express = require('express')
+const app = express()
+const port = 5000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+
+module.exports=connectToMongo;
