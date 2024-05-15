@@ -21,6 +21,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/login', (req, res) => {
+  res.send('Hello login!')
+})
+app.get('/signup', (req, res) => {
+  res.send('Hello Signup!')
+})
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
