@@ -5,15 +5,17 @@ import NavigationBar from "./Components/NavigationBar";
 import Home from "./Components/Home";
 import About from "./Components/About";
 import NoteState from "./Context/NoteState";
+import Alert from "./Components/ALert";
 
 function App() {
   return (
     <div className="App">
       <NoteState>
-        <div className="container">
+        <div >
           <Router>
             <NavigationBar />
-            <Routes>
+            <Alert message="This is danger to"/>
+            <Routes >
               <Route exact path="/" element={<Home />} />
               <Route exact path="/about" element={<About />} />
             </Routes>

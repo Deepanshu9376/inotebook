@@ -11,5 +11,5 @@ app.use('/api/auth',require('./routes/auth'))
 app.use('/api/notes',require('./routes/notes'))
 
 app.listen(port,()=>{
-    console.log(`Examplen app running on http://localhost:${port}`)
+    console.log(`Inotebook backend running on http://localhost:${port}`)
 })
