@@ -23,6 +23,10 @@ const NavigationBar = () => {
             <Link className={`nav-link ${location.pathname ==="/about" ? "active": ""}` } to='/about'>About</Link>
           </li>
         </ul>
+        <form>
+        <Link class="btn btn-primary mx-2" to="/login" href='' role="button">Login</Link>
+        <Link class="btn btn-primary mx-2" to="/signup" role="button">Signup</Link>
+        </form>
       </div>
     </div>
   </nav>

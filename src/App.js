@@ -6,6 +6,8 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import NoteState from "./Context/NoteState";
 import Alert from "./Components/ALert";
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 
 function App() {
   return (
@@ -15,10 +17,14 @@ function App() {
           <Router>
             <NavigationBar />
             <Alert message="This is danger to"/>
+            <div className="container">
             <Routes >
               <Route exact path="/" element={<Home />} />
               <Route exact path="/about" element={<About />} />
+              <Route exact path="/login" element={<Login/>} />
+              <Route exact path="/signup" element={<Signup/>} />
             </Routes>
+            </div>
           </Router>
         </div>
       </NoteState>

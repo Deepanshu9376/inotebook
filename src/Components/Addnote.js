@@ -19,6 +19,11 @@ const Addnote = () => {
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
+    setNote({
+      title: "",
+      description: "",
+      tag: "",
+    });
   };
 
   return (
@@ -31,23 +36,24 @@ const Addnote = () => {
             type="text"
             placeholder="Enter title"
             name="title"
+            value={note.title}
             onChange={handleChange}
           />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Label>Description</Form.Label>
-          <Form.Control type="text" placeholder="Enter Desctiption" name="description"
+          <Form.Control type="text" placeholder="Enter Desctiption" name="description" value={note.description}
             onChange={handleChange} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Label>Tag</Form.Label>
-          <Form.Control type="text" placeholder="Enter Tag" name="tag"
+          <Form.Control type="text" placeholder="Enter Tag" name="tag" value={note.tag}
             onChange={handleChange} />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleClick}>
+        <Button disabled ={ note.title.length<5 || note.description.length<5  } variant="primary" type="submit" onClick={handleClick}>
           Add Note
         </Button>
       </Form>

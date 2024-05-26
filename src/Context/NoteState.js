@@ -34,19 +34,9 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title,description,tag})
     });
-
-
-    console.log("Adding a note");
-    const note = {
-      _id: "66489378adda92b064140555a",
-      user: "6645aa7a49a8268c3400d13a",
-      title: title,
-      description: description,
-      tag: tag,
-      date: "2024-05-18T11:39:38.456Z",
-      __v: 0,
-    };
+    const note=await response.json();
     setNotes(notes.concat(note));
+
   };
 
   //Delete a note
@@ -61,10 +51,10 @@ const NoteState = (props) => {
   
     });
     const json = response.json();
-    console.log(json);
+    // console.log(json);
 
     //Logic to delete
-    console.log("Deleting the note with " + id);
+    // console.log("Deleting the note with " + id);
     const newnotes = notes.filter((note) => {
       return note._id !== id;
     });
@@ -75,25 +65,28 @@ const NoteState = (props) => {
   const editNote = async (id, title, description, tag) => {
     //Api call
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0NWFhN2E0OWE4MjY4YzM0MDBkMTNhIn0sImlhdCI6MTcxNTg1MTk2OX0.e3rT0us34KzndycF34zzFMwdjkCNE-E73Gn4M7JVe64"
       },
       body: JSON.stringify({title,description,tag})
     });
-    const json = response.json();
-    console.log(json);
+    const json = await response.json();
+    // console.log(json);
 
-//Logic to edit in client
-  for (let index = 0; index < notes.length; index++) {
-    const element = notes[index];
+  let nayenotes=JSON.parse(JSON.stringify(notes));
+  //Logic to edit in client
+  for (let index = 0; index < nayenotes.length; index++) {
+    const element = nayenotes[index];
     if (element._id === id) {
-      element.title = title;
-      element.description = description;
-      element.tag = tag;
+      nayenotes[index].title = title;
+      nayenotes[index].description = description;
+      nayenotes[index].tag = tag;
+      break;
     }
   }
+  setNotes(nayenotes);
 }
 
   return (
