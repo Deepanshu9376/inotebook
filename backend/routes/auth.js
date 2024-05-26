@@ -16,15 +16,17 @@ router.post(
     query("password", "Password must be 5 char length").isLength({ min: 5 }),
   ],
   async (req, res) => {
+    let success=false
     const result = validationResult(req);
     if (result.isEmpty()) {
-      return res.json({ errors: result.array() });
+      return res.json({success, errors: result.array() });
     }
 
     //check whether user with email address exist
     try {
       let user = await User.findOne({ email: req.body.email });
       if (user) {
+        success=false
         return res
           .status(400)
           .json({ error: "sorry user with this email already exists" });
@@ -44,9 +46,11 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success=true;
+      res.json({ success, authToken });
       // console.log(jwtData);
       // res.json(user)
+
     } catch (error) {
       console.log(error.message);
       res.status(500).send("Internal Server Error");
