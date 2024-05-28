@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import noteContext from "../Context/NoteContext";
 
-const Addnote = () => {
+const Addnote = (props) => {
   const Context = useContext(noteContext);
   const { addNote } = Context;
   const [note, setNote] = useState({
@@ -24,6 +24,7 @@ const Addnote = () => {
       description: "",
       tag: "",
     });
+    props.showAlert("Added Successfully", "success");
   };
 
   return (
